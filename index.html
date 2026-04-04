@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Taha Erkin Tunalı — Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #0d0d0d;
+  --bg2:        #141414;
+  --bg3:        #1a1a1a;
+  --card:       #1e1e1e;
+  --accent:     #5b8c75;
+  --accent2:    #7faa94;
+  --text:       #e8e4de;
+  --muted:      #888;
+  --border:     rgba(91,140,117,0.25);
+  --font-head:  'Cormorant Garamond', serif;
+  --font-body:  'DM Sans', sans-serif;
+  --radius:     12px;
+  --max:        1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+.container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.section { padding: 100px 0; }
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.section-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 64px;
+  max-width: 480px;
+}
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: block;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; padding: 20px 0;
+  transition: background 0.4s;
+}
+nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); padding: 14px 0; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+.nav-links { display: flex; gap: 36px; }
+.nav-links a { font-size: 0.88rem; color: var(--muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+#hero {
+  min-height: 100vh; display: flex; align-items: center;
+  position: relative; overflow: hidden; padding-top: 80px;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; width: 100%;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(91,140,117,0.1); border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 0.78rem; color: var(--accent); margin-bottom: 28px;
+}
+.hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); display:block; }
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 300; line-height: 1.05;
+  letter-spacing: -0.03em; margin-bottom: 24px;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-desc { color: var(--muted); max-width: 420px; margin-bottom: 40px; font-size: 1rem; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+.hero-stats {
+  display: flex; gap: 40px;
+  padding-top: 32px; border-top: 1px solid var(--border);
+}
+.stat-num {
+  font-family: var(--font-head); font-size: 2.4rem;
+  font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px;
+}
+.stat-label { font-size: 0.8rem; color: var(--muted); }
+.hero-img-wrap { position: relative; aspect-ratio: 3/4; max-height: 560px; }
+.hero-img-wrap img { width:100%; height:100%; object-fit:cover; border-radius:24px; filter: grayscale(15%); }
+.hero-img-placeholder {
+  width:100%; height:100%; background:var(--bg3); border-radius:24px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:12px; border:1px dashed var(--border); color:var(--muted); font-size:0.85rem;
+}
+.hero-img-badge {
+  position:absolute; bottom:28px; left:-24px;
+  background:var(--bg2); border:1px solid var(--border);
+  border-radius:var(--radius); padding:16px 20px;
+}
+.hero-badge-num { font-family:var(--font-head); font-size:2rem; font-weight:700; color:var(--accent); line-height:1; }
+.hero-badge-text { font-size:0.78rem; color:var(--muted); }
+.hero-bg-circle {
+  position:absolute; width:600px; height:600px; border-radius:50%;
+  background:radial-gradient(circle, rgba(91,140,117,0.07) 0%, transparent 70%);
+  right:-100px; top:50%; transform:translateY(-50%); pointer-events:none;
+}
+
+/* ABOUT */
+#about { background: var(--bg2); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.about-text p { color:var(--muted); margin-bottom:20px; font-size:0.97rem; }
+.skill-list { margin-top:32px; display:flex; flex-direction:column; gap:18px; }
+.skill-header { display:flex; justify-content:space-between; font-size:0.88rem; margin-bottom:8px; }
+.skill-pct { color:var(--accent); font-weight:500; }
+.skill-bar { height:3px; background:var(--border); border-radius:100px; overflow:hidden; }
+.skill-fill {
+  height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:100px; width:0; transition:width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* SKILL TAGS */
+.skill-tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.skill-tag {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:100px; padding:6px 16px; font-size:0.8rem; color:var(--muted);
+  transition: all 0.2s;
+}
+.skill-tag:hover { border-color:var(--accent); color:var(--accent); }
+
+/* EXPERTISE (was Services) */
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.service-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:36px 32px;
+  transition:all 0.3s ease; position:relative; overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent); opacity:0; transition:opacity 0.3s;
+}
+.service-card:hover { transform:translateY(-6px); border-color:var(--accent); }
+.service-card:hover::before { opacity:1; }
+.service-icon { font-size:2rem; margin-bottom:20px; display:block; }
+.service-title { font-family:var(--font-head); font-size:1.35rem; font-weight:600; margin-bottom:12px; }
+.service-desc { color:var(--muted); font-size:0.9rem; line-height:1.7; }
+
+/* EXPERIENCE */
+#experience { background:var(--bg2); }
+.timeline { position:relative; padding-left:32px; }
+.timeline::before {
+  content:''; position:absolute; left:6px; top:0; bottom:0;
+  width:1px; background:var(--border);
+}
+.timeline-item { position:relative; margin-bottom:48px; }
+.timeline-item::before {
+  content:''; position:absolute; left:-28px; top:6px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--bg2); border:2px solid var(--accent);
+}
+.timeline-date { color:var(--accent); font-size:0.8rem; font-weight:500; margin-bottom:8px; }
+.timeline-role { font-family:var(--font-head); font-size:1.4rem; font-weight:600; margin-bottom:4px; }
+.timeline-company { color:var(--muted); font-size:0.9rem; margin-bottom:12px; }
+.timeline-desc { color:var(--muted); font-size:0.88rem; }
+.timeline-bullets { color:var(--muted); font-size:0.88rem; padding-left:0; margin-top:8px; display:flex; flex-direction:column; gap:6px; }
+.timeline-bullets li { display:flex; gap:8px; }
+.timeline-bullets li::before { content:'→'; color:var(--accent); flex-shrink:0; font-size:0.8rem; margin-top:3px; }
+
+/* PORTFOLIO / PROJECTS */
+.portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.portfolio-card {
+  border-radius:var(--radius); overflow:hidden; position:relative;
+  background:var(--card); border:1px solid var(--border);
+  padding:32px; transition:all 0.3s;
+}
+.portfolio-card:hover { transform:translateY(-6px); border-color:var(--accent); }
+.portfolio-card-icon { font-size:2rem; margin-bottom:16px; }
+.portfolio-cat { font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:8px; }
+.portfolio-name { font-family:var(--font-head); font-size:1.2rem; font-weight:600; margin-bottom:10px; }
+.portfolio-desc { color:var(--muted); font-size:0.85rem; line-height:1.65; }
+
+/* PUBLICATIONS */
+#publications { background:var(--bg2); }
+.pub-list { display:flex; flex-direction:column; gap:24px; }
+.pub-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:28px 32px;
+  display:flex; gap:24px; align-items:flex-start;
+  transition:all 0.3s;
+}
+.pub-card:hover { border-color:var(--accent); transform:translateX(4px); }
+.pub-year {
+  min-width:56px; font-family:var(--font-head); font-size:1.6rem;
+  font-weight:700; color:var(--accent); line-height:1;
+}
+.pub-journal { font-size:0.78rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+.pub-title { font-size:1rem; font-weight:500; margin-bottom:6px; }
+.pub-detail { font-size:0.85rem; color:var(--muted); }
+
+/* CONTACT */
+.contact-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.contact-info p { color:var(--muted); margin-bottom:40px; }
+.contact-detail { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.contact-icon {
+  width:44px; height:44px; background:var(--bg3); border:1px solid var(--border);
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; flex-shrink:0;
+}
+.contact-detail-label { font-size:0.75rem; color:var(--muted); margin-bottom:2px; }
+.contact-detail-val { font-size:0.92rem; }
+.contact-form { display:flex; flex-direction:column; gap:20px; }
+.form-group label { display:block; font-size:0.8rem; color:var(--muted); margin-bottom:8px; }
+.form-group input, .form-group textarea {
+  width:100%; background:var(--bg3); border:1px solid var(--border);
+  border-radius:10px; padding:14px 18px; color:var(--text);
+  font-family:var(--font-body); font-size:0.9rem; outline:none;
+  transition:border-color 0.2s; resize:vertical;
+}
+.form-group input:focus, .form-group textarea:focus { border-color:var(--accent); }
+.form-group textarea { min-height:140px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* LANGUAGES */
+.lang-grid { display:flex; gap:20px; flex-wrap:wrap; margin-top:32px; }
+.lang-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px 28px; text-align:center; min-width:120px;
+}
+.lang-name { font-family:var(--font-head); font-size:1.2rem; font-weight:600; margin-bottom:4px; }
+.lang-level { font-size:0.78rem; color:var(--accent); }
+
+/* FOOTER */
+footer { background:var(--bg2); border-top:1px solid var(--border); padding:40px 0; text-align:center; }
+.footer-logo { font-family:var(--font-head); font-size:2rem; font-weight:700; color:var(--accent); margin-bottom:24px; }
+.footer-links { display:flex; justify-content:center; gap:32px; margin-bottom:24px; }
+.footer-links a { color:var(--muted); font-size:0.88rem; transition:color 0.2s; }
+.footer-links a:hover { color:var(--text); }
+.footer-social { display:flex; justify-content:center; gap:16px; margin-bottom:32px; }
+.footer-social a {
+  width:40px; height:40px; background:var(--bg3); border:1px solid var(--border);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color:var(--muted); transition:all 0.2s;
+}
+.footer-social a:hover { border-color:var(--accent); color:var(--accent); }
+.footer-copy { font-size:0.82rem; color:var(--muted); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.fade-up { opacity:0; }
+.fade-up.visible { animation:fadeUp 0.7s ease forwards; }
+.delay-1 { animation-delay:0.1s; }
+.delay-2 { animation-delay:0.2s; }
+.delay-3 { animation-delay:0.3s; }
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .hero-grid, .about-grid, .contact-wrap { grid-template-columns:1fr; gap:40px; }
+  .hero-img-wrap { max-height:380px; }
+  .hero-img-badge { left:16px; }
+  .services-grid, .portfolio-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:600px) {
+  .services-grid, .portfolio-grid { grid-template-columns:1fr; }
+  .nav-links { display:none; }
+  .form-row { grid-template-columns:1fr; }
+  .pub-card { flex-direction:column; gap:12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">TET.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:tahaerkintunali@gmail.com" class="btn btn-accent">Hire Me</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag fade-up">Open to new opportunities</div>
+        <h1 class="hero-name fade-up delay-1">
+          Hello, I'm<br><em>Taha Erkin<br>Tunalı</em>
+        </h1>
+        <p class="hero-desc fade-up delay-2">
+          Mechanical Engineer specializing in propulsion performance, thermal management, and simulation — currently at Ford Otomotiv, Beşiktaş / Istanbul.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a href="#experience" class="btn btn-accent">View My Work</a>
+          <a href="TAHAERKİN_TUNALI_CV.pdf" class="btn btn-outline" download>Download CV</a>
+        </div>
+        <div class="hero-stats fade-up delay-3">
+          <div class="stat">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Publications</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Vehicle Variants Simulated</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-img-wrap fade-up delay-2">
+        <!-- ✏️ Fotoğrafını eklemek için: <img src="foto.jpg" alt="Taha Erkin Tunalı"> -->
+        <div class="hero-img-placeholder">
+          <span style="font-size:3rem">📷</span>
+          <span>Fotoğrafını buraya ekle</span>
+          <span style="font-size:0.75rem;opacity:0.5">img src="foto.jpg" ile</span>
+        </div>
+        <div class="hero-img-badge">
+          <div class="hero-badge-num">Ford</div>
+          <div class="hero-badge-text">Otomotiv<br>2024 – Present</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT / SKILLS -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <span class="label">About Me</span>
+        <h2 class="section-title">Who I Am</h2>
+        <p>
+          I am a mechanical engineer with hands-on experience in engine performance, thermal management, and manufacturing optimization. I have worked on projects ranging from improving production efficiency at Siemens to developing advanced simulation models for Ford's electric and combustion vehicles.
+        </p>
+        <p>
+          I enjoy combining technical expertise with problem-solving skills to create practical and sustainable engineering solutions. My background includes academic research and two peer-reviewed publications, applying machine learning to automotive engineering challenges.
+        </p>
+        <p>
+          I am motivated by opportunities where I can contribute to both technological development and environmental sustainability.
+        </p>
+
+        <div style="margin-top:32px">
+          <span class="label">Languages</span>
+          <div class="lang-grid">
+            <div class="lang-card">
+              <div class="lang-name">English</div>
+              <div class="lang-level">Advanced — C1</div>
+            </div>
+            <div class="lang-card">
+              <div class="lang-name">German</div>
+              <div class="lang-level">Elementary — A2</div>
+            </div>
+            <div class="lang-card">
+              <div class="lang-name">Romanian</div>
+              <div class="lang-level">Beginner — A1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up delay-1">
+        <span class="label">Core Skills</span>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-header"><span>GT-Suite / Simulation</span><span class="skill-pct">95%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>Python / Data Analysis</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>MATLAB / Simulink</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>CAD (SolidWorks / CATIA / NX)</span><span class="skill-pct">82%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span>Ansys / FEA</span><span class="skill-pct">78%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:36px">
+          <span class="label" style="margin-bottom:16px">All Tools</span>
+          <div class="skill-tags">
+            <span class="skill-tag">AutoCAD</span>
+            <span class="skill-tag">SolidWorks</span>
+            <span class="skill-tag">Siemens NX</span>
+            <span class="skill-tag">CATIA</span>
+            <span class="skill-tag">Fusion360</span>
+            <span class="skill-tag">GT-Suite</span>
+            <span class="skill-tag">MATLAB</span>
+            <span class="skill-tag">Simulink</span>
+            <span class="skill-tag">Ansys</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">PVsyst</span>
+            <span class="skill-tag">RetScreen</span>
+            <span class="skill-tag">Control FPWIN Pro</span>
+            <span class="skill-tag">C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERTISE -->
+<section id="expertise" class="section">
+  <div class="container">
+    <span class="label fade-up">What I Do</span>
+    <h2 class="section-title fade-up">Areas of Expertise</h2>
+    <p class="section-sub fade-up">Engineering disciplines I bring to every project.</p>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <span class="service-icon">⚙️</span>
+        <h3 class="service-title">Propulsion & Engine Performance</h3>
+        <p class="service-desc">CAE validation of engine and propulsion systems, simulation models for motor performance, and component selection for EV and ICE platforms.</p>
+      </div>
+      <div class="service-card fade-up delay-1">
+        <span class="service-icon">🌡️</span>
+        <h3 class="service-title">Thermal Management</h3>
+        <p class="service-desc">Simulation of thermal systems for 15+ vehicle variants, predicting flow rates, pressures, and boost temperatures to enhance reliability.</p>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <span class="service-icon">🤖</span>
+        <h3 class="service-title">HiL / SiL / MiL Simulation</h3>
+        <p class="service-desc">Real-time simulation models using GT-Suite, Simulink, and Python — reducing calibration time and effort by approximately 50%.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">🏭</span>
+        <h3 class="service-title">Manufacturing Optimization</h3>
+        <p class="service-desc">Data analysis with Python & Tableau to identify process inefficiencies, enabling ~7% reduction in cycle times and 15% improvement in defect detection.</p>
+      </div>
+      <div class="service-card fade-up delay-1">
+        <span class="service-icon">🔋</span>
+        <h3 class="service-title">Battery & EV Systems</h3>
+        <p class="service-desc">Modeling and optimization of battery systems, heat pump vs. PTC analysis for BEV trucks, and hydrogen fuel cell hybrid architectures.</p>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <span class="service-icon">🧠</span>
+        <h3 class="service-title">AI & Data Tools</h3>
+        <p class="service-desc">Developed AI-powered knowledge assistants and Python automation tools for engineering teams, significantly reducing manual effort and search time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px">
+      <div>
+        <span class="label fade-up">Career</span>
+        <h2 class="section-title fade-up">Professional Experience</h2>
+        <p class="section-sub fade-up">Industry roles where I've made an impact.</p>
+        <div class="timeline fade-up">
+
+          <div class="timeline-item">
+            <div class="timeline-date">01/2024 – Present</div>
+            <div class="timeline-role">Propulsion Performance & Energy Management Engineer</div>
+            <div class="timeline-company">Ford Otomotiv Sanayi A.Ş.</div>
+            <ul class="timeline-bullets">
+              <li>CAE validation of engine and propulsion systems using GT-Suite</li>
+              <li>Thermal simulations for 15+ vehicle variants (flow rates, pressures, boost temps)</li>
+              <li>HiL/SiL/MiL real-time simulation — ~50% reduction in calibration effort</li>
+              <li>EV & ICE calibration support under high-altitude and extreme ambient conditions</li>
+              <li>Friction & lubrication analyses — 3% reduction in mechanical losses</li>
+              <li>Developed AI-powered knowledge assistant from SharePoint documents</li>
+              <li>Built comprehensive Python automation tool for the engineering team</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">09/2022 – 08/2023</div>
+            <div class="timeline-role">Part-Time Working Student — Manufacturing Engineer</div>
+            <div class="timeline-company">Siemens San. ve Tic. A.Ş.</div>
+            <ul class="timeline-bullets">
+              <li>Visualized large-scale production data with Excel, Python & Tableau — ~7% cycle time reduction</li>
+              <li>Supported 5+ manufacturing improvement projects via MS Office & SharePoint</li>
+              <li>Root cause analyses improving defect detection rates by ~15%</li>
+              <li>Image processing algorithms with Python & OpenCV for visual quality inspection</li>
+              <li>Digital transformation: data-driven dashboards and automated reporting workflows</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <span class="label fade-up">Academic</span>
+        <h2 class="section-title fade-up">Education</h2>
+        <p class="section-sub fade-up">My academic foundation.</p>
+        <div class="timeline fade-up">
+
+          <div class="timeline-item">
+            <div class="timeline-date">2018 – 2023</div>
+            <div class="timeline-role">B.Sc. Mechanical Engineering</div>
+            <div class="timeline-company">Yıldız Technical University, Istanbul</div>
+            <div class="timeline-desc">GPA: 3.07 / 4.00</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2018</div>
+            <div class="timeline-role">High School Diploma</div>
+            <div class="timeline-company">TED College, Konya</div>
+            <div class="timeline-desc">GPA: 3.55 / 4.00</div>
+          </div>
+
+        </div>
+
+        <span class="label fade-up" style="margin-top:48px">Internships</span>
+        <div class="timeline fade-up" style="margin-top:24px">
+          <div class="timeline-item">
+            <div class="timeline-date">03/2023 – 05/2023</div>
+            <div class="timeline-role">Business & Organizational Intern</div>
+            <div class="timeline-company">Siemens San. ve Tic. A.Ş.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">11/2022 – 01/2023</div>
+            <div class="timeline-role">Construction Intern</div>
+            <div class="timeline-company">Siemens San. ve Tic. A.Ş.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">06/2021 – 08/2021</div>
+            <div class="timeline-role">Manufacturing Intern</div>
+            <div class="timeline-company">Akim Metal San. ve Tic. A.Ş.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <span class="label fade-up">Work</span>
+    <h2 class="section-title fade-up">Projects & Activities</h2>
+    <p class="section-sub fade-up">Academic projects, design work, and extracurriculars.</p>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-icon">🚛</div>
+        <div class="portfolio-cat">Graduate Thesis — 2023</div>
+        <div class="portfolio-name">BTruck — Hybrid BEV / FCEV Heavy-Duty Truck</div>
+        <p class="portfolio-desc">Research on sustainable heavy-duty transportation integrating battery-electric and hydrogen fuel cell systems, with renewable-energy hydrogen production station design.</p>
+      </div>
+
+      <div class="portfolio-card fade-up delay-1">
+        <div class="portfolio-card-icon">☀️</div>
+        <div class="portfolio-cat">Engineering Project — 2022</div>
+        <div class="portfolio-name">Solar Energy Design & Analysis — Konya</div>
+        <p class="portfolio-desc">Designed and analyzed a solar energy system for Konya using PVsyst and RetScreen, evaluating energy production, feasibility, and environmental impact.</p>
+      </div>
+
+      <div class="portfolio-card fade-up delay-2">
+        <div class="portfolio-card-icon">🚲</div>
+        <div class="portfolio-cat">Design Project — 2021</div>
+        <div class="portfolio-name">New Bicycle Conceptual Design</div>
+        <p class="portfolio-desc">Developed an innovative bicycle concept using a systematic design approach — covering ideation, functional analysis, and detailed CAD modeling.</p>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-icon">✏️</div>
+        <div class="portfolio-cat">Technical Drawing — 2019–2020</div>
+        <div class="portfolio-name">Mechanical Pencil</div>
+        <p class="portfolio-desc">Detailed technical drawing and design project of a mechanical pencil mechanism, focusing on tolerances, assembly, and manufacturing specifications.</p>
+      </div>
+
+      <div class="portfolio-card fade-up delay-1">
+        <div class="portfolio-card-icon">🏎️</div>
+        <div class="portfolio-cat">Extracurricular — 2020–2021</div>
+        <div class="portfolio-name">Formula Student — Suspension Support Team</div>
+        <p class="portfolio-desc">Member of the Formula Student suspension support team at Yıldız Technical University, contributing to vehicle dynamics analysis and component design.</p>
+      </div>
+
+      <div class="portfolio-card fade-up delay-2">
+        <div class="portfolio-card-icon">🏆</div>
+        <div class="portfolio-cat">Competition — 2022</div>
+        <div class="portfolio-name">Leap Event Case Competition — Winner</div>
+        <p class="portfolio-desc">Won the Leap Event case competition, demonstrating strong analytical and problem-solving skills in a competitive, real-world business and engineering challenge.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="section">
+  <div class="container">
+    <span class="label fade-up">Research</span>
+    <h2 class="section-title fade-up">Publications</h2>
+    <p class="section-sub fade-up">Peer-reviewed journal papers in automotive and thermal engineering.</p>
+    <div class="pub-list">
+
+      <div class="pub-card fade-up">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-journal">International Journal of Heat and Mass Transfer · Oct 2025</div>
+          <div class="pub-title">Range improvement in BEV trucks using heat pump for cabin heating instead of PTC heater</div>
+          <div class="pub-detail">Analysis of heat pump vs. PTC heater impact on battery electric truck range and energy efficiency.</div>
+        </div>
+      </div>
+
+      <div class="pub-card fade-up delay-1">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-journal">Thermal Science and Engineering Progress · Sep 2025</div>
+          <div class="pub-title">Machine Learning Based Predictive Control of Thermal Management System in Battery Electric Vehicles</div>
+          <div class="pub-detail">Application of machine learning methods for predictive thermal control in BEV powertrain systems.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <span class="label fade-up">Get In Touch</span>
+    <h2 class="section-title fade-up">Let's Work Together</h2>
+    <div class="contact-wrap">
+      <div class="contact-info fade-up">
+        <p>Have a project, collaboration, or opportunity in mind? Feel free to reach out — I'm always open to meaningful engineering challenges.</p>
+        <div class="contact-detail">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val">tahaerkintunali@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-val">+90 554 548 80 84</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-val">Beşiktaş, Istanbul, Turkey</div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form fade-up delay-1" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent" style="align-self:flex-start">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Taha Erkin Tunalı.</div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-social">
+      <!-- ✏️ LinkedIn linkini ekle -->
+      <a href="https://linkedin.com/in/" title="LinkedIn">in</a>
+    </div>
+    <p class="footer-copy">© 2025 Taha Erkin Tunalı. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      el.target.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('Message sent! (Connect to Formspree or your backend to activate.)');
+}
+</script>
+</body>
+</html>
