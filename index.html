@@ -236,6 +236,20 @@ nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); pad
 .pub-journal { font-size:0.78rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
 .pub-title { font-size:1rem; font-weight:500; margin-bottom:6px; }
 .pub-detail { font-size:0.85rem; color:var(--muted); }
+.pub-actions { display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
+.pub-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 18px; border-radius:100px; font-size:0.82rem;
+  font-family:var(--font-body); font-weight:500; transition:all 0.2s; cursor:pointer;
+}
+.pub-btn-dl {
+  background:var(--accent); color:#fff;
+}
+.pub-btn-dl:hover { background:var(--accent2); transform:translateY(-2px); }
+.pub-btn-ext {
+  background:transparent; border:1px solid var(--border); color:var(--muted);
+}
+.pub-btn-ext:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
 
 /* CONTACT */
 .contact-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
@@ -661,19 +675,27 @@ footer { background:var(--bg2); border-top:1px solid var(--border); padding:40px
 
       <div class="pub-card fade-up">
         <div class="pub-year">2025</div>
-        <div>
+        <div style="flex:1">
           <div class="pub-journal">International Journal of Heat and Mass Transfer · Oct 2025</div>
           <div class="pub-title">Range improvement in BEV trucks using heat pump for cabin heating instead of PTC heater</div>
           <div class="pub-detail">Analysis of heat pump vs. PTC heater impact on battery electric truck range and energy efficiency.</div>
+          <div class="pub-actions">
+            <a href="Documents/article1.pdf" class="pub-btn pub-btn-dl" download>⬇ Download PDF</a>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0017931025012451" class="pub-btn pub-btn-ext" target="_blank" rel="noopener">↗ View on Elsevier</a>
+          </div>
         </div>
       </div>
 
       <div class="pub-card fade-up delay-1">
         <div class="pub-year">2025</div>
-        <div>
+        <div style="flex:1">
           <div class="pub-journal">Thermal Science and Engineering Progress · Sep 2025</div>
           <div class="pub-title">Machine Learning Based Predictive Control of Thermal Management System in Battery Electric Vehicles</div>
           <div class="pub-detail">Application of machine learning methods for predictive thermal control in BEV powertrain systems.</div>
+          <div class="pub-actions">
+            <a href="Documents/article2.pdf" class="pub-btn pub-btn-dl" download>⬇ Download PDF</a>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S2451904925008959" class="pub-btn pub-btn-ext" target="_blank" rel="noopener">↗ View on Elsevier</a>
+          </div>
         </div>
       </div>
 
@@ -770,4 +792,4 @@ const observer = new IntersectionObserver((entries) => {
     if (el.isIntersecting) {
       el.target.classList.add('animate');
       el.target.querySelectorAll('.skill-fill').forEach(bar => {
-        bar.style.width = bar.dataset.pct + 
+        bar.style.width = bar.dataset.pct +
