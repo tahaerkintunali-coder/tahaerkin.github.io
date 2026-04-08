@@ -680,7 +680,7 @@ footer { background:var(--bg2); border-top:1px solid var(--border); padding:40px
           <div class="pub-title">Range improvement in BEV trucks using heat pump for cabin heating instead of PTC heater</div>
           <div class="pub-detail">Analysis of heat pump vs. PTC heater impact on battery electric truck range and energy efficiency.</div>
           <div class="pub-actions">
-            <a href="Documents/RangeImprovementinBEVTrucksUsingHeatPumpforCabinHeatingInsteadofPTCHeater.pdf" class="pub-btn pub-btn-dl" download>⬇ Download PDF</a>
+            <a href="Documents/RangeImprovementinBEVTrucksUsingHeatPumpforCabinHeatingInsteadofPTCHeater.pdf" class="pub-btn pub-btn-dl" onclick="downloadPDF(event, 'Documents/RangeImprovementinBEVTrucksUsingHeatPumpforCabinHeatingInsteadofPTCHeater.pdf', 'RangeImprovement_BEVTrucks.pdf')">⬇ Download PDF</a>
             <a href="https://www.sciencedirect.com/science/article/abs/pii/S0017931025012451" class="pub-btn pub-btn-ext" target="_blank" rel="noopener">↗ View on Elsevier</a>
           </div>
         </div>
@@ -693,7 +693,7 @@ footer { background:var(--bg2); border-top:1px solid var(--border); padding:40px
           <div class="pub-title">Machine Learning Based Predictive Control of Thermal Management System in Battery Electric Vehicles</div>
           <div class="pub-detail">Application of machine learning methods for predictive thermal control in BEV powertrain systems.</div>
           <div class="pub-actions">
-            <a href="Documents/MachineLearningBasedPredictiveControl.pdf" class="pub-btn pub-btn-dl" download>⬇ Download PDF</a>
+            <a href="Documents/MachineLearningBasedPredictiveControl.pdf" class="pub-btn pub-btn-dl" onclick="downloadPDF(event, 'Documents/MachineLearningBasedPredictiveControl.pdf', 'MachineLearningBasedPredictiveControl.pdf')">⬇ Download PDF</a>
             <a href="https://www.sciencedirect.com/science/article/abs/pii/S2451904925008959" class="pub-btn pub-btn-ext" target="_blank" rel="noopener">↗ View on Elsevier</a>
           </div>
         </div>
@@ -786,6 +786,21 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
+
+async function downloadPDF(e, url, filename) {
+  e.preventDefault();
+  try {
+    const res = await fetch(url);
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  } catch {
+    window.open(url, '_blank');
+  }
+}
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
